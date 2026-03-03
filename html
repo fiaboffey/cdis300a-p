@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CDIS 300 — Fiametta Boffey</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#faf8f4;--ink:#1c1a17;--muted:#8a8478;--rule:#ddd9d0;
+  --audi:#1a6b8a;--neuro-r:#7b3f8c;--neuro-f:#3d5a8e;
+  --resp:#2e7d5e;--phon:#8b2635;--reso:#b5621a;--arti:#4a6741;
+  --surface:#fff;--surface2:#f4f1eb;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden}
+
+/* ── STICKY NAV ── */
+#topnav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  background:rgba(250,248,244,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--rule);
+  padding:.7rem 2rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;
+}
+#topnav .nav-brand{
+  font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);margin-right:.8rem;white-space:nowrap;
+}
+.nav-btn{
+  padding:.3rem .85rem;border:1px solid var(--rule);border-radius:99px;
+  background:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.72rem;
+  color:var(--muted);transition:all .2s;text-decoration:none;white-space:nowrap;
+}
+.nav-btn:hover{color:var(--ink);border-color:var(--ink)}
+.nav-btn.active{color:var(--surface);border-color:var(--ink);background:var(--ink)}
+.nav-btn.b-audi{--nc:var(--audi)}
+.nav-btn.b-neuro-r{--nc:var(--neuro-r)}
+.nav-btn.b-neuro-f{--nc:var(--neuro-f)}
+.nav-btn.b-resp{--nc:var(--resp)}
+.nav-btn.b-phon{--nc:var(--phon)}
+.nav-btn.b-reso{--nc:var(--reso)}
+.nav-btn.b-arti{--nc:var(--arti)}
+.nav-btn:hover{color:var(--nc,var(--ink));border-color:var(--nc,var(--ink));background:transparent}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;display:grid;grid-template-columns:1fr 1fr;
+  padding:7rem 5vw 4rem;gap:3rem;align-items:center;
+  border-bottom:1px solid var(--rule);
+}
+.hero-left{display:flex;flex-direction:column;gap:1.5rem}
+.hero-tag{
+  font-family:'JetBrains Mono',monospace;font-size:.65rem;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+}
+.hero-title{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,5vw,4.2rem);
+  font-weight:700;line-height:1.08;
+}
+.hero-title em{font-style:italic;color:var(--audi)}
+.hero-premise{
+  font-size:.95rem;line-height:1.75;color:#555;max-width:480px;
+  border-left:3px solid var(--rule);padding-left:1rem;
+}
+.hero-premise strong{color:var(--ink)}
+.hero-chips{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.5rem}
+.hero-chip{
+  padding:.35rem .9rem;border:1px solid;border-radius:99px;
+  font-size:.68rem;font-family:'JetBrains Mono',monospace;letter-spacing:.05em;
+  cursor:pointer;transition:all .22s;text-decoration:none;
+  display:flex;align-items:center;gap:.4rem;
+}
+.hero-chip:hover{transform:translateY(-2px);box-shadow:0 5px 16px rgba(0,0,0,.1)}
+.hc-audi{color:var(--audi);border-color:var(--audi);background:rgba(26,107,138,.06)}
+.hc-neuro-r{color:var(--neuro-r);border-color:var(--neuro-r);background:rgba(123,63,140,.06)}
+.hc-neuro-f{color:var(--neuro-f);border-color:var(--neuro-f);background:rgba(61,90,142,.06)}
+.hc-resp{color:var(--resp);border-color:var(--resp);background:rgba(46,125,94,.06)}
+.hc-phon{color:var(--phon);border-color:var(--phon);background:rgba(139,38,53,.06)}
+.hc-reso{color:var(--reso);border-color:var(--reso);background:rgba(181,98,26,.06)}
+.hc-arti{color:var(--arti);border-color:var(--arti);background:rgba(74,103,65,.06)}
+.scroll-hint{
+  font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.12em;
+  color:var(--muted);display:flex;align-items:center;gap:.5rem;margin-top:1rem;
+  animation:bob 2.2s ease-in-out infinite;
+}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+.hero-right{display:flex;align-items:center;justify-content:center}
+.hero-photo-frame{
+  width:min(380px,100%);aspect-ratio:3/4;border-radius:8px;
+  overflow:hidden;border:1px solid var(--rule);position:relative;
+  background:var(--surface2);
+}
+.hero-photo-frame img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-photo-placeholder{
+  width:100%;height:100%;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:.8rem;
+  color:var(--muted);font-family:'JetBrains Mono',monospace;
+  font-size:.68rem;letter-spacing:.08em;text-align:center;padding:2rem;
+}
+.photo-ph-icon{font-size:3rem;opacity:.3}
+.hero-name-tag{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(transparent,rgba(0,0,0,.55));
+  padding:2rem 1.2rem .9rem;color:#fff;
+}
+.hero-name-tag h2{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600}
+.hero-name-tag p{font-size:.72rem;opacity:.8;margin-top:.2rem;font-family:'DM Sans',sans-serif}
+
+/* ── SECTION WRAPPER ── */
+.system-section{
+  padding:5rem 5vw;border-bottom:1px solid var(--rule);
+  scroll-margin-top:60px;
+}
+.sys-header{margin-bottom:2.5rem}
+.sys-step-tag{
+  font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.2em;
+  text-transform:uppercase;margin-bottom:.5rem;display:flex;align-items:center;gap:.6rem;
+}
+.sys-step-tag::before{content:'';display:inline-block;width:28px;height:2px;border-radius:1px}
+.sys-title{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);
+  font-weight:700;line-height:1.15;margin-bottom:.6rem;
+}
+.sys-subtitle{font-size:.9rem;color:var(--muted);max-width:560px;line-height:1.6}
+
+/* Section accent colors */
+.sec-audi .sys-step-tag{color:var(--audi)} .sec-audi .sys-step-tag::before{background:var(--audi)}
+.sec-neuro-r .sys-step-tag{color:var(--neuro-r)} .sec-neuro-r .sys-step-tag::before{background:var(--neuro-r)}
+.sec-neuro-f .sys-step-tag{color:var(--neuro-f)} .sec-neuro-f .sys-step-tag::before{background:var(--neuro-f)}
+.sec-resp .sys-step-tag{color:var(--resp)} .sec-resp .sys-step-tag::before{background:var(--resp)}
+.sec-phon .sys-step-tag{color:var(--phon)} .sec-phon .sys-step-tag::before{background:var(--phon)}
+.sec-reso .sys-step-tag{color:var(--reso)} .sec-reso .sys-step-tag::before{background:var(--reso)}
+.sec-arti .sys-step-tag{color:var(--arti)} .sec-arti .sys-step-tag::before{background:var(--arti)}
+
+/* ── TWO COL LAYOUT ── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start}
+.two-col.flip{direction:rtl}.two-col.flip>*{direction:ltr}
+
+/* ── HOTSPOT DIAGRAM ── */
+.diagram-wrap{position:relative;border-radius:12px;overflow:visible;background:var(--surface2);border:1px solid var(--rule)}
+.diagram-img-area{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:12px 12px 0 0}
+.diagram-img-area img{width:100%;height:100%;object-fit:cover;display:block}
+.diagram-placeholder{
+  width:100%;height:100%;background:var(--surface2);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:.6rem;color:var(--muted);font-family:'JetBrains Mono',monospace;
+  font-size:.65rem;letter-spacing:.06em;text-align:center;padding:1rem;
+}
+.diagram-caption{padding:.7rem 1rem;font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:.06em;border-top:1px solid var(--rule)}
+.diagram-hint{
+  display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem .8rem;
+  font-size:.72rem;color:var(--muted);
+}
+.pulse-dot-hint{width:10px;height:10px;border-radius:50%;background:var(--accent,#888);animation:pulse 1.8s infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+
+/* HOTSPOT */
+.hotspot{
+  position:absolute;width:22px;height:22px;border-radius:50%;
+  border:2.5px solid #fff;cursor:pointer;transform:translate(-50%,-50%);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'JetBrains Mono',monospace;font-size:.55rem;font-weight:700;color:#fff;
+  transition:transform .2s;z-index:10;
+  box-shadow:0 0 0 4px rgba(255,255,255,.2),0 0 12px 2px currentColor;
+}
+.hotspot::after{
+  content:'';position:absolute;inset:-4px;border-radius:50%;
+  border:2px solid currentColor;animation:ring 2s infinite;opacity:.6;
+}
+@keyframes ring{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.7);opacity:0}}
+.hotspot:hover{transform:translate(-50%,-50%) scale(1.25)}
+.hotspot.active{box-shadow:0 0 0 5px rgba(255,255,255,.4),0 0 20px 4px currentColor;transform:translate(-50%,-50%) scale(1.2)}
+
+/* POPUP */
+.hs-popup{
+  position:absolute;z-index:50;width:280px;
+  background:var(--surface);border:1px solid var(--rule);
+  border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.12);
+  padding:1.1rem 1.2rem;
+  opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;
+  transform:translateY(6px);
+}
+.hs-popup.visible{opacity:1;pointer-events:all;transform:translateY(0)}
+.hs-popup .pop-label{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.3rem}
+.hs-popup h4{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
+.hs-popup p{font-size:.78rem;line-height:1.65;color:#555}
+.hs-popup .pop-close{
+  position:absolute;top:.6rem;right:.7rem;background:none;border:none;
+  cursor:pointer;font-size:1rem;color:var(--muted);line-height:1;
+}
+.hs-popup .pop-close:hover{color:var(--ink)}
+.pop-accent{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:.4rem;vertical-align:middle}
+
+/* ── INFO PANEL (right side) ── */
+.info-panel{display:flex;flex-direction:column;gap:1.2rem}
+.info-intro{font-size:.88rem;line-height:1.75;color:#555;padding-bottom:1.2rem;border-bottom:1px solid var(--rule)}
+.info-intro strong{color:var(--ink)}
+
+/* ACCORDION */
+.accordion-item{border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+.accordion-btn{
+  width:100%;padding:.85rem 1.1rem;background:none;border:none;
+  display:flex;align-items:center;justify-content:space-between;
+  cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.85rem;
+  font-weight:500;color:var(--ink);text-align:left;transition:background .2s;
+}
+.accordion-btn:hover{background:var(--surface2)}
+.accordion-btn .acc-icon{font-size:.7rem;color:var(--muted);transition:transform .25s;flex-shrink:0}
+.accordion-btn.open .acc-icon{transform:rotate(180deg)}
+.accordion-body{
+  max-height:0;overflow:hidden;transition:max-height .35s ease;
+  font-size:.8rem;line-height:1.7;color:#555;
+}
+.accordion-body-inner{padding:.1rem 1.1rem 1rem}
+.accordion-body ul{padding-left:1rem;display:flex;flex-direction:column;gap:.3rem}
+.accordion-body ul li{list-style:none;padding-left:.8rem;position:relative}
+.accordion-body ul li::before{content:'→';position:absolute;left:0;color:var(--muted);font-size:.65rem;top:.15rem}
+.accordion-body ul li strong{color:var(--ink)}
+.acc-label{
+  font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.08em;
+  text-transform:uppercase;padding:.15rem .5rem;border-radius:99px;margin-right:.5rem;
+}
+
+/* ── NEXT SECTION LINK ── */
+.next-link{
+  display:flex;align-items:center;gap:.7rem;padding:1rem 1.2rem;
+  background:var(--surface2);border-radius:10px;border:1px solid var(--rule);
+  text-decoration:none;color:var(--ink);font-size:.85rem;font-weight:500;
+  transition:all .2s;margin-top:1rem;
+}
+.next-link:hover{border-color:var(--ink);transform:translateX(4px)}
+.next-link .nl-arrow{font-size:1rem;transition:transform .2s}
+.next-link:hover .nl-arrow{transform:translateX(4px)}
+.next-link .nl-label{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block}
+
+/* ── PATHWAY STRIP ── */
+.pathway-strip{
+  display:flex;align-items:center;gap:0;flex-wrap:wrap;
+  background:var(--surface);border:1px solid var(--rule);border-radius:12px;overflow:hidden;
+  margin:2rem 0;
+}
+.pw-node{
+  flex:1;min-width:120px;padding:1rem .8rem;text-align:center;cursor:pointer;
+  border-right:1px solid var(--rule);transition:background .2s;position:relative;
+}
+.pw-node:last-child{border-right:none}
+.pw-node:hover,.pw-node.active{background:var(--surface2)}
+.pw-node .pwn-step{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
+.pw-node .pwn-name{font-size:.8rem;font-weight:500}
+.pw-node .pwn-bar{height:3px;border-radius:2px;margin-top:.5rem;opacity:.3;transition:opacity .2s}
+.pw-node.active .pwn-bar{opacity:1}
+.pw-detail{background:var(--surface2);border:1px solid var(--rule);border-radius:12px;padding:1.5rem;margin-bottom:2rem;min-height:100px;transition:all .2s}
+.pw-detail h4{font-family:'Cormorant Garamond',serif;font-size:1.2rem;margin-bottom:.5rem}
+.pw-detail p{font-size:.82rem;color:#555;line-height:1.65}
+
+/* ── REFERENCES ── */
+#references{padding:5rem 5vw 6rem;background:var(--surface2)}
+#references h2{font-family:'Cormorant Garamond',serif;font-size:2rem;margin-bottom:.5rem}
+#references .ref-note{font-size:.8rem;color:var(--muted);margin-bottom:2rem;font-style:italic}
+.ref-list{display:flex;flex-direction:column;gap:.75rem}
+.ref-item{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:.9rem 1.2rem;font-size:.82rem;line-height:1.7;color:#555}
+.ref-item strong{color:var(--ink)}
+
+/* ── MODAL OVERLAY ── */
+#modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:500;display:none;align-items:center;justify-content:center;padding:1rem}
+#modal-overlay.open{display:flex}
+.modal-box{background:var(--surface);border-radius:16px;max-width:480px;width:100%;padding:2rem;position:relative;max-height:90vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,.2)}
+.modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;cursor:pointer;font-size:1.3rem;color:var(--muted)}
+.modal-close:hover{color:var(--ink)}
+.modal-tag{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.4rem}
+.modal-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;margin-bottom:1rem;line-height:1.2}
+.modal-body{font-size:.85rem;line-height:1.75;color:#555}
+.modal-body strong{color:var(--ink)}
+.modal-body ul{padding-left:1.2rem;margin:.5rem 0;display:flex;flex-direction:column;gap:.3rem}
+.modal-body ul li{list-style:none;padding-left:.7rem;position:relative;font-size:.82rem}
+.modal-body ul li::before{content:'→';position:absolute;left:0;color:var(--muted);font-size:.65rem;top:.15rem}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  #hero{grid-template-columns:1fr;padding:6rem 5vw 3rem}
+  .hero-right{order:-1}
+  .hero-photo-frame{aspect-ratio:1/1;max-width:280px;margin:0 auto}
+  .two-col,.two-col.flip{grid-template-columns:1fr;direction:ltr}
+  .pathway-strip{flex-direction:column}
+  .pw-node{width:100%;border-right:none;border-bottom:1px solid var(--rule)}
+  .pw-node:last-child{border-bottom:none}
+}
+@media(max-width:600px){
+  .system-section{padding:4rem 5vw}
+  #topnav{padding:.5rem 1rem;gap:.35rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ── TOP NAV ── -->
+<nav id="topnav">
+  <span class="nav-brand">CDIS 300</span>
+  <a class="nav-btn b-audi" href="#auditory">👂 Auditory</a>
+  <a class="nav-btn b-neuro-r" href="#neuro-receive">🧠 Neuro: Receive</a>
+  <a class="nav-btn b-neuro-f" href="#neuro-formulate">🧠 Neuro: Respond</a>
+  <a class="nav-btn b-resp" href="#respiratory">💨 Respiratory</a>
+  <a class="nav-btn b-phon" href="#phonatory">〰 Phonatory</a>
+  <a class="nav-btn b-reso" href="#resonatory">🔊 Resonatory</a>
+  <a class="nav-btn b-arti" href="#articulatory">👄 Articulatory</a>
+</nav>
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-tag">CDIS 300 · A&amp;P of Speech-Language &amp; Hearing · Final Project</div>
+    <h1 class="hero-title">
+      "Do you<br/>like <em>cheese?</em>"
+    </h1>
+    <p class="hero-premise">
+      Four words. Seven physiological systems. Milliseconds. This project traces the complete journey of human communication — from the moment <strong>sound enters the ear</strong> to the moment <strong>a spoken response leaves the lips</strong> — through every anatomical system that makes it possible.
+    </p>
+    <div class="hero-chips">
+      <a class="hero-chip hc-audi" href="#auditory"><span>01</span> Auditory</a>
+      <a class="hero-chip hc-neuro-r" href="#neuro-receive"><span>02</span> Neuro: Receive</a>
+      <a class="hero-chip hc-neuro-f" href="#neuro-formulate"><span>03</span> Neuro: Respond</a>
+      <a class="hero-chip hc-resp" href="#respiratory"><span>04</span> Respiratory</a>
+      <a class="hero-chip hc-phon" href="#phonatory"><span>05</span> Phonatory</a>
+      <a class="hero-chip hc-reso" href="#resonatory"><span>06</span> Resonatory</a>
+      <a class="hero-chip hc-arti" href="#articulatory"><span>07</span> Articulatory</a>
+    </div>
+    <div class="scroll-hint">scroll to explore ↓</div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-photo-frame">
+      <!-- REPLACE the div below with: <img src="YOUR_GITHUB_PHOTO_URL" alt="Fiametta Boffey"/> -->
+      <div class="hero-photo-placeholder">
+        <div class="photo-ph-icon">🧑‍🎓</div>
+        <span>YOUR PHOTO HERE</span>
+        <span style="opacity:.6;font-size:.58rem">Replace this div with an img tag<br/>pointing to your GitHub-hosted photo</span>
+      </div>
+      <div class="hero-name-tag">
+        <h2>Fiametta Boffey</h2>
+        <p>CDIS 300 · Mrs. Kinamon</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     01 — AUDITORY
+══════════════════════════════════════ -->
+<section id="auditory" class="system-section sec-audi">
+  <div class="sys-header">
+    <div class="sys-step-tag">Step 01 · The Question Arrives</div>
+    <h2 class="sys-title">Auditory System</h2>
+    <p class="sys-subtitle">Before any response can be formed, the ear must capture, transduce, and transmit the acoustic signal of "Do you like cheese?" to the brain. Click the glowing circles on the diagram to explore each structure.</p>
+  </div>
+
+  <div class="two-col">
+    <!-- DIAGRAM -->
+    <div>
+      <div class="diagram-wrap" id="diag-audi">
+        <div class="diagram-img-area" id="diag-audi-img">
+          <!-- REPLACE with: <img src="YOUR_EAR_IMAGE_URL" alt="Ear diagram"/> -->
+          <div class="diagram-placeholder">
+            <div style="font-size:2.5rem">👂</div>
+            <strong style="font-size:.8rem">REPLACE WITH YOUR IMAGE</strong>
+            <span>Suggested: labeled diagram of outer, middle &amp; inner ear</span>
+            <span style="opacity:.6">img src="YOUR_GITHUB_URL"</span>
+          </div>
+          <!-- HOTSPOTS — positions are % from top-left; adjust after adding your image -->
+          <div class="hotspot" style="left:18%;top:35%;color:var(--audi);background:var(--audi)" data-popup="hs-audi-1" title="Auricle/Pinna">1</div>
+          <div class="hotspot" style="left:32%;top:50%;color:var(--audi);background:var(--audi)" data-popup="hs-audi-2" title="Tympanic Membrane">2</div>
+          <div class="hotspot" style="left:50%;top:42%;color:var(--audi);background:var(--audi)" data-popup="hs-audi-3" title="Ossicles">3</div>
+          <div class="hotspot" style="left:68%;top:38%;color:var(--audi);background:var(--audi)" data-popup="hs-audi-4" title="Cochlea">4</div>
+          <div class="hotspot" style="left:82%;top:55%;color:var(--audi);background:var(--audi)" data-popup="hs-audi-5" title="CN VIII">5</div>
+        </div>
+        <!-- POPUPS -->
+        <div class="hs-popup" id="hs-audi-1">
+          <button class="pop-close" onclick="closePopup('hs-audi-1')">✕</button>
+          <div class="pop-label"><span class="pop-accent" style="background:var(--audi)"></span>Outer Ear</div>
+          <h4>Auricle / Pinna</h4>
+          <p>Elastic cartilage covered by skin. Collects incoming sound waves and provides spectral cues for sound localization — especially elevation. The complex folds (helix, antihelix, tragus, concha) create direction-dependent filtering that the brain uses to judge where a sound is coming from.</p>
+        </div>
+        <div class="hs-popup" id="hs-audi-2">
+          <button class="pop-close" onclick="closePopup('hs-audi-2')">✕</button>
+          <div class="pop-label"><span class="pop-accent" style="background:var(--audi)"></span>Outer / Middle Ear Border</div>
+          <h4>Tympanic Membrane</h4>
+          <p>A thin cone-shaped membrane (~9–10 mm diameter) that separates the outer and middle ear. When "Do you like cheese?" arrives, the sound pressure waves cause the eardrum to vibrate. It is attached to the malleus at the umbo, transferring vibrations directly into the ossicular chain.</p>
+        </div>
+        <div class="hs-popup" id="hs-audi-3">
+          <button class="pop-close" onclick="closePopup('hs-audi-3')">✕</button>
+          <div class="pop-label"><span class="pop-accent" style="background:var(--audi)"></span>Middle Ear</div>
+          <h4>Ossicles: Malleus, Incus &amp; Stapes</h4>
+          <p>The three smallest bones in the human body. The <strong>malleus</strong> receives vibration from the eardrum, passes it to the <strong>incus</strong>, and then to the <strong>stapes</strong> whose footplate sits in the oval window. Together they provide ~25–30 dB of impedance matching gain — overcoming the acoustic mismatch between air and cochlear fluid. The <strong>stapedius muscle (CN VII)</strong> stiffens the chain to protect against loud sounds (acoustic reflex).</p>
+        </div>
+        <div class="hs-popup" id="hs-audi-4">
+          <button class="pop-close" onclick="closePopup('hs-audi-4')">✕</button>
+          <div class="pop-label"><span class="pop-accent" style="background:var(--audi)"></span>Inner Ear</div>
+          <h4>Cochlea</h4>
+          <p>A fluid-filled, snail-shaped structure (~2.5 turns) where mechanical vibration becomes neural signal. The <strong>basilar membrane</strong> responds to different frequencies at different places — high frequencies at the base, low frequencies at the apex (Place Theory, von Békésy, 1960). The <strong>Organ of Corti</strong> sits on the basilar membrane and contains ~3,500 inner hair cells (primary sensors) and ~12,000 outer hair cells (cochlear amplifier, +40–60 dB gain).</p>
+        </div>
+        <div class="hs-popup" id="hs-audi-5">
+          <button class="pop-close" onclick="closePopup('hs-audi-5')">✕</button>
+          <div class="pop-label"><span class="pop-accent" style="background:var(--audi)"></span>Neural Output</div>
+          <h4>CN VIII — Vestibulocochlear Nerve</h4>
+          <p>The cochlear branch of CN VIII carries tonotopically organized neural signals from the spiral ganglion neurons to the cochlear nuclei in the brainstem. From here the signal ascends: cochlear nuclei → superior olivary complex → inferior colliculus → medial geniculate body (thalamus) → primary auditory cortex (Heschl's gyrus, BA 41/42) → Wernicke's area for comprehension.</p>
+        </div>
+        <div class="diagram-caption">Fig. 1 — Ear anatomy. Click the numbered hotspots to explore each structure.</div>
+        <div class="diagram-hint"><div class="pulse-dot-hint" style="--accent:var(--audi)"></div> Click the glowing circles to learn about each structure</div>
+      </div>
+    </div>
+
+    <!-- INFO PANEL -->
+    <div class="info-panel">
+      <div class="info-intro">
+        The ear is divided into three sections: the <strong>outer ear</strong> (collection), the <strong>middle ear</strong> (impedance matching), and the <strong>inner ear</strong> (transduction). The entire journey from sound wave to neural signal takes only a few milliseconds.
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAcc(this)">
+          <span><span class="acc-label" style="background:rgba(26,107,138,.1);color:var(--audi)">Outer Ear</span>Collection &amp; Funneling</span>
+          <span class="acc-icon">▼</span>
+        </button>
+        <div class="accordion-body"><div class="accordion-body-inner"><ul>
+          <li>Auricle/Pinna collects sound and provides directional cues</li>
+          <li><strong>External auditory meatus (EAM):</strong> ~2.5 cm canal; resonates at 3–4 kHz, boosting high-frequency consonants by ~10–15 dB — critical for speech intelligibility</li>
+          <li><strong>Tympanic membrane:</strong> Vibrates in response to sound pressure; transfers motion to malleus</li>
+        </ul></div></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAcc(this)">
+          <span><span class="acc-label" style="background:rgba(26,107,138,.1);color:var(--audi)">Middle Ear</span>Impedance Matching</span>
+          <span class="acc-icon">▼</span>
+        </button>
+        <div class="accordion-body"><div class="accordion-body-inner"><ul>
+          <li><strong>Without ossicles:</strong> ~99.9% of sound energy would be reflected at the oval window</li>
+          <li><strong>Area ratio (TM : stapes footplate):</strong> ~55 mm² : 3.2 mm² = ~17:1 pressure gain</li>
+          <li><strong>Ossicular lever ratio:</strong> adds additional ~1.3:1 force multiplication</li>
+          <li><strong>Total gain:</strong> ~25–30 dB — recovers the air-to-fluid mismatch loss</li>
+          <li><strong>Eustachian tube:</strong> Equalizes pressure; opens during swallowing/yawning</li>
+        </ul></div></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAcc(this)">
+          <span><span class="acc-label" style="background:rgba(26,107,138,.1);color:var(--audi)">Inner Ear</span>Transduction</span>
+          <span class="acc-icon">▼</span>
+        </button>
+        <div class="accordion-body"><div class="accordion-body-inner"><ul>
+          <li><strong>Scala vestibuli:</strong> Perilymph; receives oval window vibrations</li>
+          <li><strong>Scala media:</strong> Endolymph; houses the Organ of Corti</li>
+          <li><strong>Scala tympani:</strong> Perilymph; terminates at round window</li>
+          <li><strong>Basilar membrane tonotopy:</strong> Base = high freq; Apex = low freq (Place Theory)</li>
+          <li><strong>Outer hair cells:</strong> Active amplification; damage → sensorineural hearing loss</li>
+        </ul></div></div>
+      </div>
+      <a class="next-link hc-neuro-r" href="#neuro-receive">
+        <div><span class="nl-label">Next →</span>Neurological System: Receiving &amp; Understanding</div>
+        <span class="nl-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     02 — NEURO: RECEIVING
+══════════════════════════════════════ -->
+<section id="neuro-receive" class="system-section sec-neuro-r" style="background:var(--surface2)">
+  <div class="sys-header">
+    <div class="sys-step-tag">Step 02 · The Brain Decodes the Question</div>
+    <h2 class="sys-title">Neurological System:<br/>Receiving &amp; Understanding</h2>
+    <p class="sys-subtitle">The neural signal from CN VIII travels through a series of brainstem relay stations before reaching the cortex, where Wernicke's area decodes the linguistic meaning of "Do you like cheese?"</p>
+  </div>
+
+  <!-- Pathway strip -->
+  <div class="pathway-strip" id="audi-pathway">
+    <div class="pw-node active" onclick="setPW('audi-pathway',0,this)" style="--pc:var(--neuro-r)">
+      <div class="pwn-step">Station 1</div><div class="pwn-name">Cochlear Nuclei</div>
+      <div class="pwn-bar" style="background:var(--neuro-r)"></div>
+    </div>
+    <div class="pw-node" onclick="setPW('audi-pathway',1,this)">
+      <div class="pwn-step">Station 2</div><div class="pwn-name">Superior Olive</div>
+      <div class="pwn-bar" style="background:var(--neuro-r)"></div>
+    </div>
+    <div class="pw-node" onclick="setPW('audi-pathway',2,this)">
+      <div class="pwn-step">Station 3</div><div class="pwn-name">Inf. Colliculus</div>
+      <div class="pwn-bar" style="background:var(--neuro-r)"></div>
+    </div>
+    <div class="pw-node" onclick="setPW('audi-pathway',3,this)">
+      <div class="pwn-step">Station 4</div><div class="pwn-name">Thalamus (MGB)</div>
+      <div class="pwn-bar" style="background:var(--neuro-r)"></div>
+    </div>
+    <div class="pw-node" onclick="setPW('audi-pathway',4,this)">
+      <div class="pwn-step">Station 5</div><div class="pwn-name">A1 Cortex</div>
+      <div class="pwn-bar" style="background:var(--neuro-r)"></div>
+    </div>
+    <div class="pw-node" onclick="setPW('audi-pathway',5,this)">
+      <div class="pwn-step">Station 6</div><div class="pwn-name">Wernicke's Area</div>
+      <div class="pwn-bar" style="background:var(--neuro-r)"></div>
+    </div>
+  </div>
+  <div class="pw-detail" id="audi-pathway-detail">
+    <h4>Cochlear Nuclei (Medulla)</h4>
+    <p>First CNS synapse. The cochlear nerve synapses here in the dorsal and ventral cochlear nuclei in the medulla. Encodes frequency, intensity, and timing cues. Projections from here both <strong>cross (decussate)</strong> via the trapezoid body and ascend ipsilaterally — giving rise to the bilateral nature of central auditory processing.</p>
+  </div>
+
+  <div class="two-col flip">
+    <div class="info-panel">
+      <div class="info-intro">
+        The central auditory pathway has <strong>six main relay stations</strong> between the cochlea and the cortex. This bilateral organization is why a unilateral cortical lesion rarely causes profound hearing loss — the other hemisphere still receives input.
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAcc(this)">
+          <span><span class="acc-label" style="background:rgba(123,63,140,.1);color:var(--neuro-r)">Cortex</span>Wernicke's Area — Comprehension</span>
+          <span class="acc-icon">▼</span>
+        </button>
+        <div class="accordion-body"><div class="accordion-body-inner"><ul>
+          <li><strong>Location:</strong> Posterior superior temporal gyrus, Brodmann area 22, left hemisphere</li>
+          <li>Decodes the linguistic content of incoming speech — recognizes "Do you like cheese?" as a yes/no question requiring a spoken response</li>
+          <li><strong>Wernicke's aphasia</strong> (if damaged): fluent but meaningless speech; severely impaired comprehension</li>
+          <li>Connects to Broca's area via the <strong>arcuate fasciculus</strong> — the white matter bundle that links comprehension to production</li>
+        </ul></div></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAcc(this)">
+          <span><span class="acc-label" style="background:rgba(123,63,140,.1);color:var(--neuro-r)">CN</span>Key Cranial Nerves for Reception</span>
+          <span class="acc-icon">▼</span>
+        </button>
+        <div class="accordion-body"><div class="accordion-body-inner"><ul>
+          <li><strong>CN VIII (Vestibulocochlear):</strong> Carries the acoustic signal from the cochlea to the brainstem — the sole afferent nerve for hearing</li>
+          <li><strong>CN VII (Facial):</strong> Motor to stapedius muscle — mediates the acoustic reflex protecting hearing at high intensities</li>
+          <li><strong>CN V (Trigeminal):</strong> Motor to tensor tympani — secondary acoustic reflex muscle</li>
+        </ul></div></div>
+      </div>
+      <a class="next-link" href="#neuro-formulate" style="border-color:var(--neuro-f);color:var(--neuro-f)">
+        <div><span class="nl-label">Next →</span>Neurological System: Formulating a Response</div>
+        <span class="nl-arrow">→</span>
+      </a>
+    </div>
+    <div>
+      <div class="diagram-wrap" id="diag-neuro-r">
+        <div class="diagram-img-area" id="diag-neuro-r-img">
+          <div class="diagram-placeholder">
+            <div style="font-size:2.5rem">🧠</div>
+            <strong style="font-size:.8rem">REPLACE WITH YOUR IMAGE</strong>
+            <span>Suggested: Brain lateral view showing<br/>Wernicke's area + auditory cortex labeled</span>
+          </div>
+          <div class="hotspot" style="left:55%;top:30%;color:var(--neuro-r);background:var(--neuro-r)" data-popup="hs-nr-1" title="Primary Auditory Cortex">A1</div>
+          <div class="hotspot" style="left:72%;top:48%;color:var(--neuro-r);background:var(--neuro-r)" data-popup="hs-nr-2" title="Wernicke's Area">W</div>
+          <div class="hotspot" style="left:40%;top:55%;color:var(--neuro-r);background:var(--neuro-r)" data-popup="hs-nr-3" title="Arcuate Fasciculus">AF</div>
+        </div>
+        <div class="hs-popup" id="hs-nr-1">
+          <button class="pop-close" onclick="closePopup('hs-nr-1')">✕</button>
+          <div class="pop-label"><span class="pop-accent" style="background:var(--neuro-r)"></span>Cortex</div>
+          <h4>Primary Auditory Cortex (A1)</h4>
+          <p>Located on Heschl's gyrus (transverse temporal gyrus), Brodmann areas 41 &amp; 42, in the superior temporal plane. Tonotopically organized — different regions respond to different frequencies. Receives primarily contralateral input. Processes basic acoustic features (frequency, intensity, timing) of "Do you like cheese?"</p>
+        </div>
+        <div class="hs-popup" id="hs-nr-2">
+          <button class="pop-close" onclick="closePopup('hs-nr-2')">✕</button>
+          <div class="pop-label"><span class="pop-accent" style="background:var(--neuro-r)"></span>Language Cortex</div>
+          <h4>Wernicke's Area (BA 22)</h4>
+          <p>The posterior superior temporal gyrus — the key area for <strong>language comprehension</strong>. After A1 processes the acoustic features, Wernicke's area assigns linguistic meaning. It recognizes "Do you like cheese?" as a question about cheese preference, triggering the need for a verbal response. Damage here causes Wernicke's aphasia.</p>
+        </div>
+        <div class="hs-popup" id="hs-nr-3">
+          <button class="pop-close" onclick="closePopup('hs-nr-3')">✕</button>
+          <div class="pop-label"><span class="pop-accent" style="background:var(--neuro-r)"></span>White Matter Tract</div>
+          <h4>Arcuate Fasciculus</h4>
+          <p>A critical white matter bundle that connects Wernicke's area (comprehension) to Broca's area (motor speech production). After understanding the question, this tract carries the linguistic information forward to Broca's area so a spoken response can be planned. Damage causes <strong>conduction aphasia</strong> — impaired repetition with relatively preserved comprehension and fluency.</p>
+        </div>
+        <div class="diagram-caption">Fig. 2 — Cortical language areas (left hemisphere). Click hotspots to explore.</div>
+        <div class="diagram-hint"><div class="pulse-dot-hint" style="--accent:var(--neuro-r)"></div> Click the glowing circles to learn about each area</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     03 — NEURO: FORMULATING
+══════════════════════════════════════ -->
+<section id="neuro-formulate" class="system-section sec-neuro-f">
+  <div class="sys-header">
+    <div class="sys-step-tag">Step 03 · The Brain Plans the Response</div>
+    <h2 class="sys-title">Neurological System:<br/>Formulating &amp; Motor Planning</h2>
+    <p class="sys-subtitle">Once the question is understood, the brain must formulate a reply, create a motor speech program, and send descending commands to the muscles of respiration, phonation, and articulation.</p>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="diagram-wrap" id="diag-neuro-f">
+        <div class="diagram-img-area">
+          <div class="diagram-placeholder">
+            <div style="font-size:2.5rem">🧠</div>
+            <strong style="font-size:.8rem">REPLACE WITH YOUR IMAGE</strong>
+            <span>Suggested: Brain showing Broca's area,<br/>motor cortex, basal ganglia, cerebellum</span>
+          </div>
+          <div class="hotspot" style="left:28%;top:35%;color:var(--neuro-f);background:var(--neuro-f)" data-popup="hs-nf-1" title="Broca's Area">B</div>
+          <div class="hotspot" style="left:48%;top:22%;color:var(--neuro-f);background:var(--neuro-f)" data-popup="hs-nf-2" title="Motor Cortex">M</div>
+          <div class="hotspot" style="left:52%;top:55%;color:var(--neuro-f);background:var(--neuro-f)" data-popup="hs-nf-3" title="Basal Ganglia">BG</div>
+          <div class="hotspot" style="left:70%;top:70%;color:var(--neuro-f);background:var(--neuro-f)" data-popup="hs-nf-4" title="Cerebellum">CB</div>
+        </div>
+        <div class="hs-popup" id="hs-nf-1">
+          <button class="pop-close" onclick="closePopup('hs-nf-1')">✕</button>
+          <div class="pop-label"><span class="pop-accent" style="background:var(--neuro-f)"></span>Motor Speech Programming</div>
+          <h4>Broca's Area (BA 44 &amp; 45)</h4>
+          <p>The inferior frontal gyrus of the left hemisphere. After Wernicke's area comprehends the question, Broca's area formulates the <strong>motor speech program</strong> — the precise sequence of articulatory gestures, phonemes, and prosodic patterns needed to say "Yes, I love cheese!" Damage causes Broca's aphasia: non-fluent, effortful, telegraphic speech with relatively preserved comprehension.</p>
+        </div>
+        <div class="hs-popup" id="hs-nf-2">
+          <button class="pop-close" onclick="closePopup('hs-nf-2')">✕</button>
+          <div class="pop-label"><span class="pop-accent" style="background:var(--neuro-f)"></span>Motor Execution</div>
+          <h4>Primary Motor Cortex</h4>
+          <p>The precentral gyrus executes the motor program from Broca's area. It sends commands via the <strong>corticobulbar tract</strong> to cranial nerve motor nuclei in the brainstem (controlling laryngeal, orofacial, and velopharyngeal muscles) and via the <strong>corticospinal tract</strong> to the spinal cord (controlling respiratory muscles). This is where the abstract speech plan becomes physical muscle activation.</p>
+        </div>
+        <div class="hs-popup" id="hs-nf-3">
+          <button class="pop-close" onclick="closePopup('hs-nf-3')">✕</button>
+          <div class="pop-label"><span class="pop-accent" style="background:var(--neuro-f)"></span>Extrapyramidal System</div>
+          <h4>Basal Ganglia</h4>
+          <p>A group of subcortical nuclei (caudate nucleus, putamen, globus pallidus, subthalamic nucleus, substantia nigra) that regulate movement <strong>automaticity, muscle tone</strong>, and suppression of unwanted movements. Dopaminergic pathways from the substantia nigra are essential. Disruption → <strong>hypokinetic dysarthria</strong> (Parkinson's disease) or <strong>hyperkinetic dysarthria</strong> (Huntington's disease).</p>
+        </div>
+        <div class="hs-popup" id="hs-nf-4">
+          <button class="pop-close" onclick="closePopup('hs-nf-4')">✕</button>
+          <div class="pop-label"><span class="pop-accent" style="background:var(--neuro-f)"></span>Coordination Center</div>
+          <h4>Cerebellum</h4>
+          <p>The cerebellum compares the <strong>intended movement</strong> (efference copy from motor cortex) against the <strong>actual movement</strong> (proprioceptive/tactile feedback) and corrects errors in real time. It coordinates timing, rhythm, and precision. Cerebellar damage → <strong>ataxic dysarthria</strong>: irregular, scanning speech with breakdowns in articulatory coordination.</p>
+        </div>
+        <div class="diagram-caption">Fig. 3 — Motor speech planning areas. Click hotspots to explore.</div>
+        <div class="diagram-hint"><div class="pulse-dot-hint" style="--accent:var(--neuro-f)"></div> Click the glowing circles to learn about each area</div>
+      </div>
+    </div>
+
+    <div class="info-panel">
+      <div class="info-intro">
+        The motor speech system involves <strong>three parallel neural loops</strong>: the pyramidal (direct voluntary control), the extrapyramidal (automaticity and tone), and the cerebellar (timing and error correction). All three work together for every spoken utterance.
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAcc(this)">
+          <span><span class="acc-label" style="background:rgba(61,90,142,.1);color:var(--neuro-f)">Direct</span>Pyramidal System</span>
+          <span class="acc-icon">▼</span>
+        </button>
+        <div class="accordion-body"><div class="accordion-body-inner"><ul>
+          <li><strong>Corticobulbar tract:</strong> Motor cortex → cranial nerve nuclei (brainstem) → speech muscles of larynx, face, tongue, palate</li>
+          <li><strong>Corticospinal tract:</strong> Motor cortex → spinal anterior horn → respiratory muscles (diaphragm, intercostals, abdominals)</li>
+          <li>Controls fine, voluntary, rapid movements; UMN damage → <strong>spastic dysarthria</strong></li>
+        </ul></div></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAcc(this)">
+          <span><span class="acc-label" style="background:rgba(61,90,142,.1);color:var(--neuro-f)">Key CNs</span>Cranial Nerves for Speech Production</span>
+          <span class="acc-icon">▼</span>
+        </button>
+        <div class="accordion-body"><div class="accordion-body-inner"><ul>
+          <li><strong>CN V (Trigeminal):</strong> Jaw muscles — masseter, temporalis, pterygoids</li>
+          <li><strong>CN VII (Facial):</strong> All lip muscles — orbicularis oris, buccinator, zygomaticus</li>
+          <li><strong>CN X (Vagus):</strong> All intrinsic laryngeal muscles (RLN), pharyngeal constrictors, levator veli palatini</li>
+          <li><strong>CN XII (Hypoglossal):</strong> All intrinsic and most extrinsic tongue muscles</li>
+          <li><strong>CN XI (Accessory):</strong> SCM and trapezius — head posture for speech</li>
+        </ul></div></div>
+      </div>
+      <a class="next-link" href="#respiratory" style="border-color:var(--resp);color:var(--resp)">
+        <div><span class="nl-label">Next →</span>Respiratory System — the power source activates</div>
+        <span class="nl-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     04 — RESPIRATORY
+══════════════════════════════════════ -->
+<section id="respiratory" class="system-section sec-resp" style="background:var(--surface2)">
+  <div class="sys-header">
+    <div class="sys-step-tag">Step 04 · The Airstream is Generated</div>
+    <h2 class="sys-title">Respiratory System</h2>
+    <p class="sys-subtitle">The motor cortex triggers the respiratory muscles to take a quick, large inhalation and then regulate a slow, controlled exhalation — generating the subglottal air pressure that powers all speech.</p>
+  </div>
+
+  <div class="two-col flip">
+    <div class="info-panel">
+      <div class="info-intro">
+        Speech breathing differs dramatically from life breathing. A quick inhalation of <strong>20–60% of vital capacity</strong> is followed by a slow, actively controlled exhalation across the entire utterance, maintaining <strong>~7–10 cm H₂O</strong> of subglottal pressure.
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAcc(this)">
+          <span><span class="acc-label" style="background:rgba(46,125,94,.1);color:var(--resp)">Physics</span>Boyle's Law &amp; Breathing Mechanics</span>
+          <span class="acc-icon">▼</span>
+        </button>
+        <div class="accordion-body"><div class="accordion-body-inner"><ul>
+          <li><strong>Boyle's Law (P₁V₁ = P₂V₂):</strong> Volume ↑ → Pressure ↓ → Air flows in (inspiration)</li>
+          <li><strong>Inspiration:</strong> Diaphragm contracts → thorax expands → intrapulmonary P drops below atmospheric → air in</li>
+          <li><strong>Expiration for speech:</strong> Abdominal muscles actively compress → intrapulmonary P rises → controlled airflow out</li>
+          <li><strong>Checking action:</strong> Inspiratory muscles resist elastic recoil early in the utterance; expiratory muscles generate force later</li>
+        </ul></div></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAcc(this)">
+          <span><span class="acc-label" style="background:rgba(46,125,94,.1);color:var(--resp)">Muscles</span>Inspiration &amp; Expiration</span>
+          <span class="acc-icon">▼</span>
+        </button>
+        <div class="accordion-body"><div class="accordion-body-inner"><ul>
+          <li><strong>Diaphragm (CN: Phrenic, C3–C5):</strong> Primary inspiratory muscle; flattens to increase vertical thoracic dimension</li>
+          <li><strong>External intercostals:</strong> Elevate ribs; increase anteroposterior + transverse dimensions</li>
+          <li><strong>Transversus abdominis:</strong> Deepest abdominal; key for sustained speech pressure regulation</li>
+          <li><strong>Rectus abdominis:</strong> Compresses abdomen; raises diaphragm for forceful expiration</li>
+          <li><strong>Internal oblique &amp; External oblique:</strong> Compress abdominal contents during speech</li>
+        </ul></div></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAcc(this)">
+          <span><span class="acc-label" style="background:rgba(46,125,94,.1);color:var(--resp)">Volumes</span>Lung Volumes &amp; Capacities</span>
+          <span class="acc-icon">▼</span>
+        </button>
+        <div class="accordion-body"><div class="accordion-body-inner"><ul>
+          <li><strong>Tidal Volume (TV):</strong> ~500 mL — normal resting breath</li>
+          <li><strong>Inspiratory Reserve Volume (IRV):</strong> ~3,000 mL — additional inhale beyond TV</li>
+          <li><strong>Expiratory Reserve Volume (ERV):</strong> ~1,100 mL — additional forceful exhale</li>
+          <li><strong>Residual Volume (RV):</strong> ~1,200 mL — cannot be expelled</li>
+          <li><strong>Vital Capacity (VC):</strong> ~4,600 mL = IRV + TV + ERV</li>
+          <li><strong>Speech uses:</strong> 20–60% VC vs. only ~10% VC for quiet breathing</li>
+        </ul></div></div>
+      </div>
+      <a class="next-link" href="#phonatory" style="border-color:var(--phon);color:var(--phon)">
+        <div><span class="nl-label">Next →</span>Phonatory System — vocal folds begin to vibrate</div>
+        <span class="nl-arrow">→</span>
+      </a>
+    </div>
+    <div>
+      <div class="diagram-wrap">
+        <div class="diagram-img-area">
+          <div class="diagram-placeholder">
+            <div style="font-size:2.5rem">🫁</div>
+            <strong style="font-size:.8rem">REPLACE WITH YOUR IMAGE</strong>
+            <span>Suggested: Labeled diagram of lungs,<br/>diaphragm, and respiratory muscles</span>
+          </div>
+          <div class="hotspot" style="left:50%;top:30%;color:var(--resp);background:var(--resp)" data-popup="hs-resp-1" title="Lungs">L</div>
+          <div class="hotspot" style="left:50%;top:65%;color:var(--resp);background:var(--resp)" data-popup="hs-resp-2" title="Diaphragm">D</div>
+          <div class="hotspot" style="left:28%;top:50%;color:var(--resp);background:var(--resp)" data-popup="hs-resp-3" title="Intercostals">IC</div>
+          <div class="hotspot" style="left:50%;top:82%;color:var(--resp);background:var(--resp)" data-popup="hs-resp-4" title="Abdominals">AB</div>
+        </div>
+        <div class="hs-popup" id="hs-resp-1">
+          <button class="pop-close" onclick="closePopup('hs-resp-1')">✕</button>
+          <div class="pop-label"><span class="pop-accent" style="background:var(--resp)"></span>Structure</div>
+          <h4>Lungs</h4>
+          <p><strong>Right lung:</strong> 3 lobes (superior, middle, inferior). <strong>Left lung:</strong> 2 lobes (cardiac notch accommodates the heart). Each lung is encased in a double-layered pleura — the negative intrapleural pressure keeps the lungs inflated. Air exchange occurs at ~500 million alveoli.</p>
+        </div>
+        <div class="hs-popup" id="hs-resp-2">
+          <button class="pop-close" onclick="closePopup('hs-resp-2')">✕</button>
+          <div class="pop-label"><span class="pop-accent" style="background:var(--resp)"></span>Primary Inspiratory Muscle</div>
+          <h4>Diaphragm</h4>
+          <p>The dome-shaped primary muscle of inspiration, innervated by the <strong>phrenic nerve (C3–C5)</strong>. When it contracts and flattens, the thoracic cavity lengthens vertically, creating negative intrapulmonary pressure that draws air in. For speech, the diaphragm relaxes gradually during exhalation as the abdominal muscles take over pressure regulation.</p>
+        </div>
+        <div class="hs-popup" id="hs-resp-3">
+          <button class="pop-close" onclick="closePopup('hs-resp-3')">✕</button>
+          <div class="pop-label"><span class="pop-accent" style="background:var(--resp)"></span>Rib Cage Muscles</div>
+          <h4>Intercostal Muscles</h4>
+          <p><strong>External intercostals:</strong> Elevate the ribs, increasing the anteroposterior and transverse dimensions of the thorax — assist inspiration. <strong>Internal intercostals:</strong> Depress the ribs — primary muscles of forced expiration. Together with the diaphragm, they form the core respiratory pump.</p>
+        </div>
+        <div class="hs-popup" id="hs-resp-4">
+          <button class="pop-close" onclick="closePopup('hs-resp-4')">✕</button>
+          <div class="pop-label"><span class="pop-accent" style="background:var(--resp)"></span>Speech Expiration</div>
+          <h4>Abdominal Muscles</h4>
+          <p>The four abdominal muscles (transversus abdominis, rectus abdominis, internal oblique, external oblique) are the primary drivers of <strong>active expiration for speech</strong>. The transversus abdominis is especially active for maintaining steady subglottal pressure across long utterances. Their coordinated contraction compresses the abdominal contents, pushing the diaphragm upward and expelling air.</p>
+        </div>
+        <div class="diagram-caption">Fig. 4 — Respiratory structures. Click hotspots to explore.</div>
+        <div class="diagram-hint"><div class="pulse-dot-hint" style="--accent:var(--resp)"></div> Click the glowing circles to learn about each structure</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     05 — PHONATORY
+══════════════════════════════════════ -->
+<section id="phonatory" class="system-section sec-phon">
+  <div class="sys-header">
+    <div class="sys-step-tag">Step 05 · The Voice is Produced</div>
+    <h2 class="sys-title">Phonatory System</h2>
+    <p class="sys-subtitle">The airstream from the lungs reaches the larynx, where the vocal folds adduct and begin vibrating — converting aerodynamic energy into acoustic energy (sound) via the Myoelastic-Aerodynamic Theory.</p>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="diagram-wrap">
+        <div class="diagram-img-area">
+          <div class="diagram-placeholder">
+            <div style="font-size:2.5rem">〰️</div>
+            <strong style="font-size:.8rem">REPLACE WITH YOUR IMAGE</strong>
+            <span>Suggested: Labeled laryngeal diagram<br/>showing cartilages + vocal folds (superior view)</span>
+          </div>
+          <div class="hotspot" style="left:50%;top:18%;color:var(--phon);background:var(--phon)" data-popup="hs-ph-1" title="Thyroid Cartilage">TC</div>
+          <div class="hotspot" style="left:50%;top:55%;color:var(--phon);background:var(--phon)" data-popup="hs-ph-2" title="Cricoid Cartilage">CC</div>
+          <div class="hotspot" style="left:32%;top:38%;color:var(--phon);background:var(--phon)" data-popup="hs-ph-3" title="Vocal Folds">VF</div>
+          <div class="hotspot" style="left:72%;top:38%;color:var(--phon);background:var(--phon)" data-popup="hs-ph-4" title="Arytenoids">AR</div>
+          <div class="hotspot" style="left:50%;top:75%;color:var(--phon);background:var(--phon)" data-popup="hs-ph-5" title="Cricothyroid">CT</div>
+        </div>
+        <div class="hs-popup" id="hs-ph-1">
+          <button class="pop-close" onclick="closePopup('hs-ph-1')">✕</button>
+          <div class="pop-label"><span class="pop-accent" style="background:var(--phon)"></span>Laryngeal Cartilage</div>
+          <h4>Thyroid Cartilage</h4>
+          <p>The largest laryngeal cartilage. Two laminae fuse anteriorly to form the laryngeal prominence ("Adam's apple"), which is more prominent in males due to testosterone-driven growth. Provides anterior protection for the vocal folds. The superior and inferior cornua articulate with the hyoid bone and cricoid cartilage respectively.</p>
+        </div>
+        <div class="hs-popup" id="hs-ph-2">
+          <button class="pop-close" onclick="closePopup('hs-ph-2')">✕</button>
+          <div class="pop-label"><span class="pop-accent" style="background:var(--phon)"></span>Laryngeal Cartilage</div>
+          <h4>Cricoid Cartilage</h4>
+          <p>The only <strong>complete ring</strong> of cartilage in the entire airway — signet-ring shaped with a narrow anterior arch and broad posterior lamina. Supports the arytenoid cartilages on its superior surface. The <strong>cricothyroid joint</strong> allows the cricoid to rock/tilt, changing vocal fold length and tension to control pitch (F0).</p>
+        </div>
+        <div class="hs-popup" id="hs-ph-3">
+          <button class="pop-close" onclick="closePopup('hs-ph-3')">✕</button>
+          <div class="pop-label"><span class="pop-accent" style="background:var(--phon)"></span>Vibrating Structure</div>
+          <h4>Vocal Folds</h4>
+          <p>The true vocal folds span from the thyroid cartilage (anterior commissure) to the vocal processes of the arytenoids. They have a <strong>5-layer microstructure</strong> (Hirano, 1974): epithelium → superficial LP (Reinke's space — highly pliable, enables mucosal wave) → intermediate LP (elastic) → deep LP (collagen, forms vocal ligament) → thyroarytenoid/vocalis muscle (the "body"). The <strong>cover-body model</strong> explains differential stiffness during vibration.</p>
+        </div>
+        <div class="hs-popup" id="hs-ph-4">
+          <button class="pop-close" onclick="closePopup('hs-ph-4')">✕</button>
+          <div class="pop-label"><span class="pop-accent" style="background:var(--phon)"></span>Paired Cartilages</div>
+          <h4>Arytenoid Cartilages</h4>
+          <p>Paired pyramid-shaped cartilages sitting on the superior surface of the cricoid. The <strong>vocal processes</strong> provide posterior attachment for the vocal folds; the <strong>muscular processes</strong> are attachment sites for the PCA, LCA, and IA muscles. Movement of the arytenoids (rotation + gliding at the cricoarytenoid joint) opens and closes the glottis. <strong>PCA (posterior cricoarytenoid)</strong> is the ONLY abductor of the vocal folds.</p>
+        </div>
+        <div class="hs-popup" id="hs-ph-5">
+          <button class="pop-close" onclick="closePopup('hs-ph-5')">✕</button>
+          <div class="pop-label"><span class="pop-accent" style="background:var(--phon)"></span>Intrinsic Muscle</div>
+          <h4>Cricothyroid Muscle (CT)</h4>
+          <p>The primary <strong>pitch-raising</strong> muscle. When it contracts, it tilts the cricoid posteriorly relative to the thyroid (or tilts the thyroid forward), increasing the distance between the thyroid angle and the arytenoids — which <strong>lengthens and tenses the vocal folds</strong>, raising F0. It is the only intrinsic laryngeal muscle innervated by the <strong>superior laryngeal nerve (SLN/CN X)</strong> rather than the recurrent laryngeal nerve.</p>
+        </div>
+        <div class="diagram-caption">Fig. 5 — Laryngeal structures. Click hotspots to explore.</div>
+        <div class="diagram-hint"><div class="pulse-dot-hint" style="--accent:var(--phon)"></div> Click the glowing circles to learn about each structure</div>
+      </div>
+    </div>
+
+    <div class="info-panel">
+      <div class="info-intro">
+        Vocal fold vibration is explained by the <strong>Myoelastic-Aerodynamic Theory</strong> (van den Berg, 1958): folds adduct → subglottal pressure builds → air forces folds open → Bernoulli effect + myoelastic recoil closes them → cycle repeats at F0.
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAcc(this)">
+          <span><span class="acc-label" style="background:rgba(139,38,53,.1);color:var(--phon)">Theory</span>Myoelastic-Aerodynamic Theory</span>
+          <span class="acc-icon">▼</span>
+        </button>
+        <div class="accordion-body"><div class="accordion-body-inner"><ul>
+          <li>1. LCA + IA + CT muscles <strong>adduct</strong> the vocal folds, closing the glottis</li>
+          <li>2. Expired air builds <strong>subglottal pressure</strong> until it exceeds myoelastic closure force</li>
+          <li>3. Air forces folds apart <strong>inferiorly first</strong>, creating the traveling mucosal wave</li>
+          <li>4. <strong>Bernoulli effect:</strong> Air rushing through narrow glottis drops lateral pressure, sucking folds back together</li>
+          <li>5. <strong>Myoelastic recoil</strong> + Bernoulli closes folds → cycle repeats at F0 (~120 Hz male, ~220 Hz female)</li>
+        </ul></div></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAcc(this)">
+          <span><span class="acc-label" style="background:rgba(139,38,53,.1);color:var(--phon)">Control</span>Pitch, Loudness &amp; Registers</span>
+          <span class="acc-icon">▼</span>
+        </button>
+        <div class="accordion-body"><div class="accordion-body-inner"><ul>
+          <li><strong>Raise pitch (F0):</strong> CT elongates/tenses folds → faster vibration</li>
+          <li><strong>Lower pitch:</strong> TA (vocalis) shortens/thickens folds → slower vibration</li>
+          <li><strong>Louder:</strong> Increase subglottal pressure (more respiratory force)</li>
+          <li><strong>Modal register:</strong> Normal speech; full mucosal wave; complete open-close cycle</li>
+          <li><strong>Falsetto:</strong> Thin elongated folds; high F0; possible incomplete closure</li>
+          <li><strong>Pulse/vocal fry:</strong> Thick folds; very low F0 (~20–70 Hz); irregular, creaky vibration</li>
+        </ul></div></div>
+      </div>
+      <a class="next-link" href="#resonatory" style="border-color:var(--reso);color:var(--reso)">
+        <div><span class="nl-label">Next →</span>Resonatory System — the vocal tract shapes the sound</div>
+        <span class="nl-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     06 — RESONATORY
+══════════════════════════════════════ -->
+<section id="resonatory" class="system-section sec-reso" style="background:var(--surface2)">
+  <div class="sys-header">
+    <div class="sys-step-tag">Step 06 · The Sound is Shaped</div>
+    <h2 class="sys-title">Resonatory System</h2>
+    <p class="sys-subtitle">The glottal source signal from the larynx passes into the vocal tract, where the pharyngeal, oral, and nasal cavities act as a resonance filter — shaping the acoustic signal into distinct vowels and voice quality (Source-Filter Theory, Fant, 1960).</p>
+  </div>
+
+  <div class="two-col flip">
+    <div class="info-panel">
+      <div class="info-intro">
+        The vocal tract is ~17 cm long in adult males. It functions as an <strong>acoustic filter</strong> that selectively amplifies harmonics at <strong>formant frequencies (F1, F2, F3)</strong>. The configuration of the tract determines vowel identity and overall voice quality.
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAcc(this)">
+          <span><span class="acc-label" style="background:rgba(181,98,26,.1);color:var(--reso)">Theory</span>Source-Filter Theory (Fant, 1960)</span>
+          <span class="acc-icon">▼</span>
+        </button>
+        <div class="accordion-body"><div class="accordion-body-inner"><ul>
+          <li><strong>Source:</strong> Larynx produces complex periodic tone with F0 and harmonics (2F0, 3F0...)</li>
+          <li><strong>Filter:</strong> Vocal tract selectively amplifies harmonics at formant frequencies</li>
+          <li><strong>Output:</strong> Radiated speech signal at the lips</li>
+          <li><strong>/a/ (father):</strong> High F1 (~800 Hz), Low F2 (~1,200 Hz) — jaw open, tongue low</li>
+          <li><strong>/i/ (feet):</strong> Low F1 (~300 Hz), High F2 (~2,300 Hz) — jaw close, tongue front-high</li>
+          <li><strong>/u/ (boot):</strong> Low F1, Low F2 — jaw close, tongue back-high</li>
+        </ul></div></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAcc(this)">
+          <span><span class="acc-label" style="background:rgba(181,98,26,.1);color:var(--reso)">Gate</span>Velopharyngeal Mechanism</span>
+          <span class="acc-icon">▼</span>
+        </button>
+        <div class="accordion-body"><div class="accordion-body-inner"><ul>
+          <li><strong>Velum elevates:</strong> VP port closes → oral resonance (most sounds)</li>
+          <li><strong>Velum lowers:</strong> VP port opens → nasal coupling for /m/, /n/, /ŋ/</li>
+          <li><strong>Levator veli palatini (CN X):</strong> Primary velar elevator</li>
+          <li><strong>Tensor veli palatini (CN V):</strong> Tenses velum; opens Eustachian tube</li>
+          <li><strong>Velopharyngeal insufficiency (VPI):</strong> Incomplete closure → hypernasality</li>
+        </ul></div></div>
+      </div>
+      <a class="next-link" href="#articulatory" style="border-color:var(--arti);color:var(--arti)">
+        <div><span class="nl-label">Next →</span>Articulatory System — the phonemes are formed</div>
+        <span class="nl-arrow">→</span>
+      </a>
+    </div>
+    <div>
+      <div class="diagram-wrap">
+        <div class="diagram-img-area">
+          <div class="diagram-placeholder">
+            <div style="font-size:2.5rem">🔊</div>
+            <strong style="font-size:.8rem">REPLACE WITH YOUR IMAGE</strong>
+            <span>Suggested: Midsagittal view of vocal tract<br/>showing pharyngeal, oral, nasal cavities</span>
+          </div>
+          <div class="hotspot" style="left:50%;top:20%;color:var(--reso);background:var(--reso)" data-popup="hs-rs-1" title="Nasal Cavity">NC</div>
+          <div class="hotspot" style="left:65%;top:45%;color:var(--reso);background:var(--reso)" data-popup="hs-rs-2" title="Oral Cavity">OC</div>
+          <div class="hotspot" style="left:35%;top:55%;color:var(--reso);background:var(--reso)" data-popup="hs-rs-3" title="Pharyngeal Cavity">PC</div>
+          <div class="hotspot" style="left:58%;top:35%;color:var(--reso);background:var(--reso)" data-popup="hs-rs-4" title="Velum">VP</div>
+        </div>
+        <div class="hs-popup" id="hs-rs-1">
+          <button class="pop-close" onclick="closePopup('hs-rs-1')">✕</button>
+          <div class="pop-label"><span class="pop-accent" style="background:var(--reso)"></span>Resonating Cavity</div>
+          <h4>Nasal Cavity</h4>
+          <p>Coupled to the vocal tract when the velum is lowered for nasal consonants (/m/, /n/, /ŋ/). Adds nasal resonance quality. The paranasal sinuses contribute minimally to resonance. When saying "Yes" in response to "Do you like cheese?", the /n/ in "cheese" requires brief velar lowering to couple the nasal cavity.</p>
+        </div>
+        <div class="hs-popup" id="hs-rs-2">
+          <button class="pop-close" onclick="closePopup('hs-rs-2')">✕</button>
+          <div class="pop-label"><span class="pop-accent" style="background:var(--reso)"></span>Resonating Cavity</div>
+          <h4>Oral Cavity</h4>
+          <p>The shape of the oral cavity primarily determines <strong>F1 and F2</strong> (the two formants that encode vowel identity). Configuration is set by tongue height and front-back position, jaw opening, and lip posture. Jaw opening drives F1 (open jaw = higher F1); tongue front-back position drives F2 (front tongue = higher F2).</p>
+        </div>
+        <div class="hs-popup" id="hs-rs-3">
+          <button class="pop-close" onclick="closePopup('hs-rs-3')">✕</button>
+          <div class="pop-label"><span class="pop-accent" style="background:var(--reso)"></span>Resonating Cavity</div>
+          <h4>Pharyngeal Cavity</h4>
+          <p>Extending from the laryngopharynx to the nasopharynx, the pharynx is the primary resonating tube of the vocal tract. Its shape is altered by <strong>larynx height</strong> (raised larynx = shorter, higher-resonance pharynx), <strong>tongue root position</strong> (advanced vs. retracted), and the <strong>pharyngeal constrictor muscles</strong>. Changes in pharyngeal shape alter all formant frequencies.</p>
+        </div>
+        <div class="hs-popup" id="hs-rs-4">
+          <button class="pop-close" onclick="closePopup('hs-rs-4')">✕</button>
+          <div class="pop-label"><span class="pop-accent" style="background:var(--reso)"></span>VP Valve</div>
+          <h4>Velum &amp; Velopharyngeal Port</h4>
+          <p>The soft palate (velum) is the critical valve controlling nasal/oral resonance coupling. Elevated by the <strong>levator veli palatini (CN X)</strong> for oral sounds; lowered by gravity and <strong>palatoglossus</strong> for nasal sounds. The velopharyngeal port must close completely for all non-nasal sounds to prevent hypernasality. This is assessed clinically via nasendoscopy.</p>
+        </div>
+        <div class="diagram-caption">Fig. 6 — Vocal tract resonating cavities. Click hotspots to explore.</div>
+        <div class="diagram-hint"><div class="pulse-dot-hint" style="--accent:var(--reso)"></div> Click the glowing circles to learn about each cavity</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     07 — ARTICULATORY
+══════════════════════════════════════ -->
+<section id="articulatory" class="system-section sec-arti">
+  <div class="sys-header">
+    <div class="sys-step-tag">Step 07 · The Words Are Formed</div>
+    <h2 class="sys-title">Articulatory System</h2>
+    <p class="sys-subtitle">The final step — the tongue, lips, jaw, and teeth shape the resonated acoustic signal into the precise phonemes of the spoken response. Each phoneme requires a specific articulatory configuration, executed within milliseconds.</p>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="diagram-wrap">
+        <div class="diagram-img-area">
+          <div class="diagram-placeholder">
+            <div style="font-size:2.5rem">👄</div>
+            <strong style="font-size:.8rem">REPLACE WITH YOUR IMAGE</strong>
+            <span>Suggested: Midsagittal view showing tongue,<br/>lips, teeth, hard palate, alveolar ridge</span>
+          </div>
+          <div class="hotspot" style="left:55%;top:35%;color:var(--arti);background:var(--arti)" data-popup="hs-at-1" title="Tongue">TG</div>
+          <div class="hotspot" style="left:78%;top:55%;color:var(--arti);background:var(--arti)" data-popup="hs-at-2" title="Lips">LP</div>
+          <div class="hotspot" style="left:55%;top:18%;color:var(--arti);background:var(--arti)" data-popup="hs-at-3" title="Hard Palate">HP</div>
+          <div class="hotspot" style="left:68%;top:25%;color:var(--arti);background:var(--arti)" data-popup="hs-at-4" title="Alveolar Ridge">AR</div>
+          <div class="hotspot" style="left:72%;top:68%;color:var(--arti);background:var(--arti)" data-popup="hs-at-5" title="Mandible / Jaw">JW</div>
+        </div>
+        <div class="hs-popup" id="hs-at-1">
+          <button class="pop-close" onclick="closePopup('hs-at-1')">✕</button>
+          <div class="pop-label"><span class="pop-accent" style="background:var(--arti)"></span>Primary Articulator</div>
+          <h4>Tongue</h4>
+          <p>A muscular hydrostat — maintains constant volume while changing shape. <strong>Intrinsic muscles (CN XII)</strong> change shape: superior longitudinal (curls tip up), inferior longitudinal (curls tip down), transverse (narrows + elongates), vertical (flattens + widens). <strong>Extrinsic muscles (CN XII)</strong> change position: genioglossus (protrusion — largest), hyoglossus (depress + retract), styloglossus (retract + elevate). Exception: palatoglossus = CN X.</p>
+        </div>
+        <div class="hs-popup" id="hs-at-2">
+          <button class="pop-close" onclick="closePopup('hs-at-2')">✕</button>
+          <div class="pop-label"><span class="pop-accent" style="background:var(--arti)"></span>Active Articulator (CN VII)</div>
+          <h4>Lips</h4>
+          <p><strong>Orbicularis oris:</strong> Closes and purses the lips — essential for bilabial sounds (/p/, /b/, /m/) and rounded vowels. <strong>Buccinator:</strong> Compresses cheeks; keeps air in the oral cavity. <strong>Zygomaticus major:</strong> Retracts lip corners for lip spreading (/i/). <strong>Depressor labii:</strong> Lowers lower lip for labiodentals. All lip muscles are innervated by <strong>CN VII (Facial)</strong>.</p>
+        </div>
+        <div class="hs-popup" id="hs-at-3">
+          <button class="pop-close" onclick="closePopup('hs-at-3')">✕</button>
+          <div class="pop-label"><span class="pop-accent" style="background:var(--arti)"></span>Passive Articulator</div>
+          <h4>Hard Palate</h4>
+          <p>The bony roof of the mouth, formed by the <strong>maxilla</strong> (anterior palatine process) and <strong>palatine bones</strong> (posterior). A passive articulator — it doesn't move, but serves as the target for palatal sounds: /ʃ/ (she), /ʒ/ (measure), /tʃ/ (cheese), /dʒ/ (judge). The word "cheese" in our target phrase requires the tongue to contact the hard palate for the /tʃ/ affricate.</p>
+        </div>
+        <div class="hs-popup" id="hs-at-4">
+          <button class="pop-close" onclick="closePopup('hs-at-4')">✕</button>
+          <div class="pop-label"><span class="pop-accent" style="background:var(--arti)"></span>Passive Articulator</div>
+          <h4>Alveolar Ridge</h4>
+          <p>The bony ridge immediately posterior to the upper incisors. The most frequently used passive articulation target in English — the tongue tip or blade makes contact or approximation here for: /t/, /d/, /n/, /s/, /z/, /l/, /r/. In saying "Yes" (/j-ɛ-s/), the /s/ requires precise tongue-alveolar approximation to generate the high-frequency turbulence characteristic of sibilants.</p>
+        </div>
+        <div class="hs-popup" id="hs-at-5">
+          <button class="pop-close" onclick="closePopup('hs-at-5')">✕</button>
+          <div class="pop-label"><span class="pop-accent" style="background:var(--arti)"></span>Active Articulator (CN V)</div>
+          <h4>Mandible / Jaw</h4>
+          <p>The only moveable bone of the skull. Jaw height directly determines <strong>vowel F1 frequency</strong> (open jaw = higher F1). Key muscles: <strong>masseter</strong> (elevates jaw — strongest closer), <strong>temporalis</strong> (elevates + retracts), <strong>medial pterygoid</strong> (elevation), <strong>lateral pterygoid</strong> (opens jaw, protrudes mandible). All innervated by <strong>CN V (Trigeminal)</strong>.</p>
+        </div>
+        <div class="diagram-caption">Fig. 7 — Articulatory structures. Click hotspots to explore.</div>
+        <div class="diagram-hint"><div class="pulse-dot-hint" style="--accent:var(--arti)"></div> Click the glowing circles to learn about each structure</div>
+      </div>
+    </div>
+
+    <div class="info-panel">
+      <div class="info-intro">
+        Articulation involves <strong>active articulators</strong> (tongue, lips, jaw — they move) and <strong>passive articulators</strong> (alveolar ridge, hard palate, teeth — stationary targets). The sound wave radiating from the lips is the final product of all seven systems working in concert.
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAcc(this)">
+          <span><span class="acc-label" style="background:rgba(74,103,65,.1);color:var(--arti)">Theory</span>Theories of Articulation</span>
+          <span class="acc-icon">▼</span>
+        </button>
+        <div class="accordion-body"><div class="accordion-body-inner"><ul>
+          <li><strong>Motor Theory (Liberman et al., 1967):</strong> Listeners perceive speech by mentally simulating the articulatory gestures that produced it</li>
+          <li><strong>Acoustic Theory:</strong> Listeners decode acoustic cues directly, without reference to articulatory gestures</li>
+          <li><strong>Task Dynamic/Articulatory Phonology (Browman &amp; Goldstein):</strong> Speech units are coordinative structures — overlapping articulatory gestures, not discrete sequential segments</li>
+        </ul></div></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAcc(this)">
+          <span><span class="acc-label" style="background:rgba(74,103,65,.1);color:var(--arti)">Example</span>"Yes, I love cheese!" — Articulation Breakdown</span>
+          <span class="acc-icon">▼</span>
+        </button>
+        <div class="accordion-body"><div class="accordion-body-inner"><ul>
+          <li><strong>/j/ (yes):</strong> Tongue body high and front, approximates hard palate</li>
+          <li><strong>/ɛ/ (yes):</strong> Jaw moderately open, tongue mid-front — F1 mid, F2 high</li>
+          <li><strong>/s/ (yes):</strong> Tongue tip near alveolar ridge; narrow constriction creates high-frequency turbulence</li>
+          <li><strong>/l/ (love):</strong> Tongue tip on alveolar ridge; lateral airflow around sides of tongue</li>
+          <li><strong>/tʃ/ (cheese):</strong> Tongue blade contacts hard palate (stop phase) → releases to palatal fricative</li>
+          <li><strong>/z/ (cheese):</strong> Like /s/ but with vocal fold adduction for voicing</li>
+        </ul></div></div>
+      </div>
+      <div style="background:var(--surface2);border:1px solid var(--rule);border-radius:10px;padding:1rem 1.2rem;margin-top:.5rem;font-size:.82rem;line-height:1.7;color:#555">
+        🎉 <strong style="color:var(--ink)">The speech chain is complete.</strong> The acoustic signal leaves the lips, travels through the air, and reaches the next listener's ear — where the entire process begins again.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── REFERENCES ── -->
+<section id="references">
+  <h2>References</h2>
+  <p class="ref-note">All references in APA 7th edition format. Replace/supplement with your course text and two additional credible sources as required.</p>
+  <div class="ref-list">
+    <div class="ref-item"><strong>Seikel, J. A., Drumright, D. G., &amp; Hudock, D. (2023).</strong> <em>Anatomy &amp; physiology for speech, language, and hearing</em> (6th ed.). Plural Publishing.</div>
+    <div class="ref-item"><strong>Zemlin, W. R. (1998).</strong> <em>Speech and hearing science: Anatomy and physiology</em> (4th ed.). Allyn &amp; Bacon.</div>
+    <div class="ref-item"><strong>Hirano, M. (1974).</strong> Morphological structure of the vocal cord as a vibrator and its variations. <em>Folia Phoniatrica, 26</em>(2), 89–94. https://doi.org/10.1159/000263771</div>
+    <div class="ref-item"><strong>van den Berg, J. (1958).</strong> Myoelastic-aerodynamic theory of voice production. <em>Journal of Speech and Hearing Research, 1</em>(3), 227–244. https://doi.org/10.1044/jshr.0103.227</div>
+    <div class="ref-item"><strong>Fant, G. (1960).</strong> <em>Acoustic theory of speech production.</em> Mouton.</div>
+    <div class="ref-item"><strong>von Békésy, G. (1960).</strong> <em>Experiments in hearing.</em> McGraw-Hill.</div>
+  </div>
+</section>
+
+<!-- MODAL OVERLAY -->
+<div id="modal-overlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-tag" id="modal-tag"></div>
+    <div class="modal-title" id="modal-title"></div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+// ── HOTSPOT POPUPS ──
+document.querySelectorAll('.hotspot').forEach(hs => {
+  hs.addEventListener('click', e => {
+    e.stopPropagation();
+    const popId = hs.dataset.popup;
+    // close all others first
+    document.querySelectorAll('.hs-popup').forEach(p => {
+      if (p.id !== popId) { p.classList.remove('visible'); }
+    });
+    document.querySelectorAll('.hotspot').forEach(h => {
+      if (h !== hs) h.classList.remove('active');
+    });
+    const pop = document.getElementById(popId);
+    if (!pop) return;
+    // position popup
+    const wrap = hs.closest('.diagram-img-area');
+    const wRect = wrap.getBoundingClientRect();
+    const hRect = hs.getBoundingClientRect();
+    const relX = hRect.left - wRect.left + hRect.width/2;
+    const relY = hRect.top  - wRect.top  + hRect.height/2;
+    // place above or below
+    pop.style.left = Math.min(Math.max(relX - 140, 4), wRect.width - 290) + 'px';
+    if (relY > wRect.height * 0.55) {
+      pop.style.top = 'auto';
+      pop.style.bottom = (wRect.height - relY + 12) + 'px';
+    } else {
+      pop.style.bottom = 'auto';
+      pop.style.top = (relY + 18) + 'px';
+    }
+    const isOpen = pop.classList.contains('visible');
+    pop.classList.toggle('visible', !isOpen);
+    hs.classList.toggle('active', !isOpen);
+  });
+});
+
+document.addEventListener('click', () => {
+  document.querySelectorAll('.hs-popup').forEach(p => p.classList.remove('visible'));
+  document.querySelectorAll('.hotspot').forEach(h => h.classList.remove('active'));
+});
+
+function closePopup(id) {
+  document.getElementById(id)?.classList.remove('visible');
+  document.querySelectorAll('.hotspot').forEach(h => h.classList.remove('active'));
+}
+
+// ── ACCORDIONS ──
+function toggleAcc(btn) {
+  const body = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('open');
+  // close siblings
+  btn.closest('.info-panel')?.querySelectorAll('.accordion-btn').forEach(b => {
+    b.classList.remove('open');
+    b.nextElementSibling.style.maxHeight = '0';
+  });
+  if (!isOpen) {
+    btn.classList.add('open');
+    body.style.maxHeight = body.scrollHeight + 'px';
+  }
+}
+
+// ── PATHWAY STRIP ──
+const pwData = {
+  'audi-pathway': [
+    {h:'Cochlear Nuclei (Medulla)', p:'First CNS synapse. The cochlear nerve synapses here in the dorsal and ventral cochlear nuclei. Encodes frequency, intensity, and timing. Projections both <strong>cross (decussate)</strong> via the trapezoid body and ascend ipsilaterally — giving rise to bilateral central auditory processing.'},
+    {h:'Superior Olivary Complex (Pons)', p:'First site of <strong>binaural integration</strong> in the ascending pathway. Critical for sound localization using interaural time differences (ITD) and interaural level differences (ILD). The olivocochlear bundle sends efferent projections back to cochlear outer hair cells, modulating their sensitivity.'},
+    {h:'Inferior Colliculus (Midbrain)', p:'A major auditory integration center. Processes complex temporal patterns, important for speech rhythm and phoneme boundaries. All ascending auditory fibers synapse here. Also mediates the <strong>auditory startle reflex</strong>. Input from both ears converges here.'},
+    {h:'Medial Geniculate Body / Thalamus', p:'The auditory relay nucleus of the thalamus. Receives input from the inferior colliculus and projects to the primary auditory cortex (Heschl\'s gyrus). Maintains tonotopic organization. The thalamus also gates sensory information — controlling what reaches conscious awareness.'},
+    {h:'Primary Auditory Cortex — Heschl\'s Gyrus (A1)', p:'Located on the transverse temporal gyri, <strong>Brodmann areas 41 &amp; 42</strong>, in the superior temporal plane. Tonotopically organized. Processes basic acoustic features: frequency, intensity, duration, and timing. Receives primarily contralateral input. The planum temporale (posterior to A1) is larger in the left hemisphere — an anatomical asymmetry linked to language dominance.'},
+    {h:"Wernicke's Area — Language Comprehension", p:'<strong>Posterior superior temporal gyrus, Brodmann area 22</strong>, typically left hemisphere. This is where the acoustic features processed in A1 are decoded as <em>language</em>. Wernicke\'s area recognizes "Do you like cheese?" as a yes/no question about cheese preference — triggering the need for a spoken response. It connects to Broca\'s area via the arcuate fasciculus.'},
+  ]
+};
+
+function setPW(id, idx, node) {
+  const strip = document.getElementById(id);
+  strip.querySelectorAll('.pw-node').forEach(n => n.classList.remove('active'));
+  node.classList.add('active');
+  const detail = document.getElementById(id + '-detail');
+  const data = pwData[id][idx];
+  detail.innerHTML = `<h4>${data.h}</h4><p>${data.p}</p>`;
+}
+
+// ── SCROLL ACTIVE NAV ──
+const secMap = {
+  'auditory':'b-audi','neuro-receive':'b-neuro-r','neuro-formulate':'b-neuro-f',
+  'respiratory':'b-resp','phonatory':'b-phon','resonatory':'b-reso','articulatory':'b-arti'
+};
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      const cls = secMap[entry.target.id];
+      if (cls) document.querySelector('.' + cls)?.classList.add('active');
+    }
+  });
+}, { threshold: 0.3, rootMargin: '-60px 0px -40% 0px' });
+
+Object.keys(secMap).forEach(id => {
+  const el = document.getElementById(id);
+  if (el) observer.observe(el);
+});
+
+// ── MODAL ──
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+}
+</script>
+</body>
+</html>
