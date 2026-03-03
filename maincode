@@ -331,7 +331,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);over
   </div>
   <div class="hero-right">
     <div class="hero-photo-frame">
-      <img src="FiaFace.png" alt="Fiametta Boffey"/>
+      <img src="https://raw.githubusercontent.com/fiaboffey/cdis300a-p/refs/heads/main/FiaFace.png" alt="Fiametta Boffey"/>
       <div class="hero-name-tag">
         <h2>Fiametta Boffey</h2>
         <p>CDIS 300 · Mrs. Kinamon</p>
@@ -355,7 +355,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);over
     <div>
       <div class="diagram-wrap" id="diag-audi">
         <div class="diagram-img-area" id="diag-audi-img">
-          <img src="Pinna.png" alt="Ear anatomy diagram"/>
+          <img src="https://raw.githubusercontent.com/fiaboffey/cdis300a-p/refs/heads/main/Pinna.png" alt="Ear anatomy diagram"/>
           <!-- HOTSPOTS — positions are % from top-left; adjust after adding your image -->
           <div class="hotspot" style="left:18%;top:35%;color:var(--audi);background:var(--audi)" data-popup="hs-audi-1" title="Auricle/Pinna">1</div>
           <div class="hotspot" style="left:32%;top:50%;color:var(--audi);background:var(--audi)" data-popup="hs-audi-2" title="Tympanic Membrane">2</div>
@@ -367,28 +367,24 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);over
         <div class="hs-popup" id="hs-audi-1">
           <button class="pop-close" onclick="closePopup('hs-audi-1')">✕</button>
           <div class="pop-label"><span class="pop-accent" style="background:var(--audi)"></span>Outer Ear</div>
-          <img src="Pinna.png" alt="Auricle / Pinna" style="width:100%;border-radius:6px;margin:.4rem 0 .5rem;aspect-ratio:4/3;object-fit:cover;display:block"/>
           <h4>Auricle / Pinna</h4>
           <p>Elastic cartilage covered by skin. Collects incoming sound waves and provides spectral cues for sound localization — especially elevation. The complex folds (helix, antihelix, tragus, concha) create direction-dependent filtering that the brain uses to judge where a sound is coming from.</p>
         </div>
         <div class="hs-popup" id="hs-audi-2">
           <button class="pop-close" onclick="closePopup('hs-audi-2')">✕</button>
           <div class="pop-label"><span class="pop-accent" style="background:var(--audi)"></span>Outer / Middle Ear Border</div>
-          <img src="AuditoryCanal.png" alt="Auditory canal" style="width:100%;border-radius:6px;margin:.4rem 0 .5rem;aspect-ratio:4/3;object-fit:cover;display:block"/>
           <h4>Tympanic Membrane</h4>
           <p>A thin cone-shaped membrane (~9–10 mm diameter) that separates the outer and middle ear. When "Do you like cheese?" arrives, the sound pressure waves cause the eardrum to vibrate. It is attached to the malleus at the umbo, transferring vibrations directly into the ossicular chain.</p>
         </div>
         <div class="hs-popup" id="hs-audi-3">
           <button class="pop-close" onclick="closePopup('hs-audi-3')">✕</button>
           <div class="pop-label"><span class="pop-accent" style="background:var(--audi)"></span>Middle Ear</div>
-          <img src="ossicularchain.png" alt="Ossicular chain" style="width:100%;border-radius:6px;margin:.4rem 0 .5rem;aspect-ratio:4/3;object-fit:cover;display:block"/>
           <h4>Ossicles: Malleus, Incus &amp; Stapes</h4>
           <p>The three smallest bones in the human body. The <strong>malleus</strong> receives vibration from the eardrum, passes it to the <strong>incus</strong>, and then to the <strong>stapes</strong> whose footplate sits in the oval window. Together they provide ~25–30 dB of impedance matching gain — overcoming the acoustic mismatch between air and cochlear fluid. The <strong>stapedius muscle (CN VII)</strong> stiffens the chain to protect against loud sounds (acoustic reflex).</p>
         </div>
         <div class="hs-popup" id="hs-audi-4">
           <button class="pop-close" onclick="closePopup('hs-audi-4')">✕</button>
           <div class="pop-label"><span class="pop-accent" style="background:var(--audi)"></span>Inner Ear</div>
-          <img src="osseouslabyrinth.png" alt="Osseous labyrinth / Cochlea" style="width:100%;border-radius:6px;margin:.4rem 0 .5rem;aspect-ratio:4/3;object-fit:cover;display:block"/>
           <h4>Cochlea</h4>
           <p>A fluid-filled, snail-shaped structure (~2.5 turns) where mechanical vibration becomes neural signal. The <strong>basilar membrane</strong> responds to different frequencies at different places — high frequencies at the base, low frequencies at the apex (Place Theory, von Békésy, 1960). The <strong>Organ of Corti</strong> sits on the basilar membrane and contains ~3,500 inner hair cells (primary sensors) and ~12,000 outer hair cells (cochlear amplifier, +40–60 dB gain).</p>
         </div>
